@@ -1,14 +1,9 @@
-import Head from "next/head";
-import { siteTitle } from "../components/layout";
 import Image from "next/image";
 
 const name = "Gabriel Raducu";
 export default function Home() {
   return (
     <>
-      <Head>
-        <title>{siteTitle}</title>
-      </Head>
       <section className="mt-3">
         <div className="text-center mb-4">
           <Image
@@ -19,7 +14,12 @@ export default function Home() {
             width={144}
             alt={name}
           />
-          <h1>{name}</h1>
+          <h1 className="text-purple">{name}</h1>
+          <h4>Brasov, Romania</h4>
+          <a href="mailto:raducu.gabriel@gmail.com">
+           <img src='/images/envelope.svg' width="20" className="d-inline me-2"></img>
+           <span>raducu.gabriel@gmail.com</span>
+          </a>
         </div>
         <p>
           Passionate about high scale frontend applications with large
@@ -32,6 +32,11 @@ export default function Home() {
         <a href="https://www.linkedin.com/in/raducugabriel/" target="_blank">
           <img src='/images/linkedin.svg' width="20" className="d-inline me-2"/>
           <span>raducugabriel</span>
+        </a>
+        <br/>
+        <a href="https://github.com/eBitzu" target="_blank">
+          <img src='/images/github.svg' width="20" className="d-inline me-2"/>
+          <span>eBitzu</span>
         </a>
       </section>
     </>

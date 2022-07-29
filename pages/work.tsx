@@ -1,8 +1,15 @@
+import Image from "next/image";
+
 export default function Work() {
   return (
-    <p>
-      On this page I want to share my working experience that lead me to this
-      point
-    </p>
+    <div className="text-center">
+      <Image
+        width={600}
+        height={400}
+        style={{ borderRadius: 20 }}
+        src={"/images/alvaro-reyes.jpeg"}
+      ></Image>
+      <p>This page is dedicated to my working experience that lead me here.</p>
+    </div>
   );
 }
