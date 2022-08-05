@@ -10,6 +10,7 @@ export default function Layout({ children }) {
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta name="description" content="Gabriel Raducu's CV" />
+        <meta name="keywords" content="gabriel, raducu, javascript, lead front-end" />
         <meta name="og:title" content={siteTitle} />
         <title>{siteTitle}</title>
       </Head>

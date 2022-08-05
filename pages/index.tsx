@@ -17,7 +17,7 @@ export default function Home() {
           <h1 className="text-purple">{name}</h1>
           <h4>Brasov, Romania</h4>
           <a href="mailto:raducu.gabriel@gmail.com">
-           <img src='/images/envelope.svg' width="20" className="d-inline me-2"></img>
+           <img src='/images/envelope.svg' width="20" height="20" className="d-inline me-2"></img>
            <span>raducu.gabriel@gmail.com</span>
           </a>
         </div>
@@ -30,12 +30,12 @@ export default function Home() {
 
         <p className="mt-4 mb-0">You can follow my activity here:</p>
         <a href="https://www.linkedin.com/in/raducugabriel/" target="_blank">
-          <img src='/images/linkedin.svg' width="20" className="d-inline me-2"/>
+          <img src='/images/linkedin.svg' width="20" height="20" className="d-inline me-2"/>
           <span>raducugabriel</span>
         </a>
         <br/>
         <a href="https://github.com/eBitzu" target="_blank">
-          <img src='/images/github.svg' width="20" className="d-inline me-2"/>
+          <img src='/images/github.svg' width="20" height="20" className="d-inline me-2"/>
           <span>eBitzu</span>
         </a>
       </section>

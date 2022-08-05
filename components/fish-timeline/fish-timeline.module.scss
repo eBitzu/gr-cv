@@ -1,0 +1,38 @@
+.line {
+    margin-top: 20px;
+    border: 1px solid blue;
+}
+
+.dot {
+    background-color: purple;
+    margin: 0 2px;
+}
+
+.dot,
+.endDot,
+.startDot {
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    position: absolute;
+    top: -4px;
+    cursor: pointer;
+}
+
+.startDot {
+    background-color: green;
+    left: 0;
+}
+
+.endDot {
+    right: 0;
+    background-color: green;
+}
+
+.bellow {
+    font-size: 10px;
+    position: absolute;
+    transform: rotate(70deg);
+    top: 20px;
+    left: 0;
+}
