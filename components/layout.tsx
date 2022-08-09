@@ -15,10 +15,10 @@ export default function Layout({ children }) {
         <title>{siteTitle}</title>
       </Head>
       <header className={headerStyles.header}>
-        <nav className="d-flex justify-content-evenly">
-          <Link href={"/"}>About me</Link>
-          <Link href={"/work"}>My Work Experience</Link>
-          <Link href={"/learn"}>My Learning Experience</Link>
+        <nav className="row justify-content-evenly align-items-center">
+          <Link href={"/"} ><a className="col-4">About me</a></Link>
+          <Link href={"/work"} ><a className="col-4">My Work Experience</a></Link>
+          <Link href={"/learn"} ><a className="col-4">My Learning Experience</a></Link>
         </nav>
       </header>
       <div className="container py-3">
