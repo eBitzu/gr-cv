@@ -21,3 +21,12 @@ img {
 .container {
   max-width: 700px;
 }
+
+#layout-container {
+  height: calc(100vh - 48px);
+  position: relative;
+}
+
+pre {
+  white-space: pre-wrap;
+}

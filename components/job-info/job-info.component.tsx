@@ -1,18 +1,13 @@
 import { CompanyType } from "../../models/api.types";
 import Image from "next/image";
-import jobStyles from "./job-info.module.scss";
+import { JobProjects } from "../project-info/project-info";
 
 export default function JobInfo({ jobInfo }: { jobInfo: CompanyType }) {
   return (
     <section>
       <div className="d-flex align-items-center">
         <div className="position-relative" style={{ height: 30, minWidth: 30 }}>
-          <Image
-            src={jobInfo.companyLogo}
-            height={30}
-            objectFit="contain"
-            layout="fill"
-          />
+          <Image src={jobInfo.companyLogo} objectFit="contain" layout="fill" />
         </div>
         <h3 className="ms-3 mb-0">{jobInfo.companyName}</h3>
         <span className="ms-3 small">
@@ -25,14 +20,11 @@ export default function JobInfo({ jobInfo }: { jobInfo: CompanyType }) {
       </div>
       <strong>Short job description:</strong>
       <p>{jobInfo.jobDescription}</p>
-      <strong>Projects info:</strong>
-      {!!jobInfo.projects && (
-        <div className="my-2">
-          {jobInfo.projects.map((slug) => (
-            <span className={jobStyles.slug}>{slug}</span>
-          ))}
-        </div>
-      )}
+      {!!jobInfo.projects && <>
+        <strong>Projects info:</strong>
+        <JobProjects projects={jobInfo.projects} />
+      </>
+      }
     </section>
   );
 }

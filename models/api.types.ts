@@ -11,10 +11,10 @@ export type CompanyType = {
 
 export type ProjectType = {
     projectName: string;
-    projectSlug: string;
+    slug: string;
     projectClient: string;
     projectDescription: string;
-    proojectFrom: string;
+    projectFrom: string;
     projectTo: string;
     responsibilities: string;
     technologies: Array<string>;

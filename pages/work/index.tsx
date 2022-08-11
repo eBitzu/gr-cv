@@ -6,13 +6,14 @@ import {
   FishTimeLineProps,
 } from "../../models/api.types";
 
+
 const startTime = new Date("2012-01-01T10:00:00").getTime();
 
 export default function Work({ points }: FishTimeline) {
   return (
     <div className="text-center">
-      <p>This page is dedicated to my working experience that lead me here.</p>
-      <h5 className="mb-5">My jobs timeline</h5>
+      <h5>My jobs timeline</h5>
+      <small className="mb-5">*Hover and select for more details</small>
       <FishTimeLine
         points={points}
         startTime={startTime}

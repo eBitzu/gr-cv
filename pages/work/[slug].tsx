@@ -27,29 +27,31 @@ export async function getStaticPaths() {
   }
 }
 
+const fields: CompanyType = {
+  companyLogo: null,
+  companyName: null,
+  companyPosition: null,
+  jobDescription: null,
+  periodFrom: null,
+  periodTo: null,
+  projects: null,
+  slug: null,
+};
+
 export async function getStaticProps(context) {
   const { slug } = context.params;
-  const fields: CompanyType = {
-    companyLogo: null,
-    companyName: null,
-    companyPosition: null,
-    jobDescription: null,
-    periodFrom: null,
-    periodTo: null,
-    projects: null,
-    slug,
-  };
+
   const requiredFields = Object.keys(fields)
     .map((key) => (key !== "slug" ? key : '"slug": slug.current'))
     .join(", ");
   const query = `*[slug.current == $slug]{${requiredFields}}`;
 
   try {
-    const [companyInfo] = await sanClient.fetch(query, { slug });
+    const [jobInfo]: Array<CompanyType> = await sanClient.fetch(query, { slug });
 
     return {
       props: {
-        jobInfo: companyInfo,
+        jobInfo,
       },
     };
   } catch (er) {
