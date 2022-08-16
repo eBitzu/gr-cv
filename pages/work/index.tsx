@@ -5,26 +5,38 @@ import {
   FishTimeline,
   FishTimeLineProps,
 } from "../../models/api.types";
-
+import { companyRequiredFields } from "../../server-utils/query.helper";
+import { CurrentPosition } from "../../components/current-position/current-position.component";
+import format from "date-fns/format";
 
 const startTime = new Date("2012-01-01T10:00:00").getTime();
 
-export default function Work({ points }: FishTimeline) {
+type WorkProps = FishTimeline & { latest: CompanyType };
+
+export default function Work({ points, latest }: WorkProps) {
   return (
-    <div className="text-center">
-      <h5>My jobs timeline</h5>
-      <small className="mb-5">*Hover and select for more details</small>
-      <FishTimeLine
-        points={points}
-        startTime={startTime}
-        startTimeLabel="Graduation"
-      ></FishTimeLine>
-    </div>
+    <>
+      <p className="mt-4 text-center">
+        Hi, this page is dedicated to my work experiences that lead me here.
+      </p>
+      <CurrentPosition latest={latest} />
+      <div>
+        <details className="my-3">
+          <summary className="text-end"><strong>Jobs timeline</strong></summary>
+          <small className="mb-5">*Hover and select for more details</small>
+        </details>
+        <FishTimeLine
+          points={points}
+          startTime={startTime}
+          startTimeLabel="Graduation"
+        ></FishTimeLine>
+      </div>
+    </>
   );
 }
 
 export async function getStaticProps(): Promise<{
-  props: { points: Array<FishTimeLineProps> };
+  props: { points: Array<FishTimeLineProps>; latest: Partial<CompanyType> };
 }> {
   const query =
     '*[_type == "company"]{"slug": slug.current, companyName, periodFrom}';
@@ -48,11 +60,15 @@ export async function getStaticProps(): Promise<{
         };
       }
     );
+
+    const latestQuery = `*[_type=="company"] | order(periodFrom desc)[0] {${companyRequiredFields}}`;
+    const latestTemp: Partial<CompanyType> = await sanClient.fetch(latestQuery);
+    const latest: Partial<CompanyType>  = {...latestTemp, periodFrom: format(new Date(latestTemp.periodFrom), 'MMM-yy')}
     return {
-      props: { points },
+      props: { points, latest },
     };
   } catch (er) {
     console.log("er", er);
-    return { props: { points: [] } };
+    return { props: { points: [], latest: null } };
   }
 }

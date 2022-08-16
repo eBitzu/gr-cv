@@ -21,6 +21,7 @@ export default function Home() {
            <span>raducu.gabriel@gmail.com</span>
           </a>
         </div>
+        <div><strong>About me:</strong></div>
         <p>
           Passionate about high scale frontend applications with large
           experience in Solution Design, JS frameworks, project setup, coding

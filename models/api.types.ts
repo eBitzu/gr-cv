@@ -32,3 +32,14 @@ export type FishTimeline = {
     startTime: number;
     startTimeLabel: string;
 }
+
+export type EducationType = {
+    name: string;
+    location: string;
+    specialty: string;
+    activities: Array<string>
+    degree: string;
+    slug: string;
+    periodFrom: string;
+    periodTo: string;
+}

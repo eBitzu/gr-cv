@@ -1,6 +1,8 @@
 import { sanClient } from "../../server-utils/client.config";
 import { CompanyType } from "../../models/api.types";
 import JobInfo from "../../components/job-info/job-info.component";
+import { companyRequiredFields } from "../../server-utils/query.helper";
+import format from "date-fns/format";
 
 export default function WorkPlace({ jobInfo }: { jobInfo: CompanyType }) {
   return <JobInfo jobInfo={jobInfo}></JobInfo>;
@@ -27,28 +29,21 @@ export async function getStaticPaths() {
   }
 }
 
-const fields: CompanyType = {
-  companyLogo: null,
-  companyName: null,
-  companyPosition: null,
-  jobDescription: null,
-  periodFrom: null,
-  periodTo: null,
-  projects: null,
-  slug: null,
-};
-
 export async function getStaticProps(context) {
   const { slug } = context.params;
 
-  const requiredFields = Object.keys(fields)
-    .map((key) => (key !== "slug" ? key : '"slug": slug.current'))
-    .join(", ");
-  const query = `*[slug.current == $slug]{${requiredFields}}`;
+  const query = `*[slug.current == $slug]{${companyRequiredFields}}`;
 
   try {
-    const [jobInfo]: Array<CompanyType> = await sanClient.fetch(query, { slug });
+    const [jobInfoTemp]: Array<CompanyType> = await sanClient.fetch(query, {
+      slug,
+    });
 
+    const jobInfo: CompanyType = {
+      ...jobInfoTemp,
+      periodFrom: format(new Date(jobInfoTemp.periodFrom), "MMM-yy"),
+      periodTo: format(new Date(jobInfoTemp.periodTo), "MMM-yy"),
+    };
     return {
       props: {
         jobInfo,

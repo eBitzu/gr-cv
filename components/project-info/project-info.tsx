@@ -1,7 +1,9 @@
 import { useCallback, useState, MouseEvent, useEffect } from "react";
 import { ProjectType } from "../../models/api.types";
 import { sanClient } from "../../server-utils/client.config";
+import { projectRequiredFields } from "../../server-utils/query.helper";
 import projectStyles from "./project-info.module.scss";
+import format from "date-fns/format";
 
 export const JobProjects = ({ projects }): JSX.Element => {
   const [project, setProject] = useState<string>("");
@@ -34,21 +36,7 @@ export const JobProjects = ({ projects }): JSX.Element => {
   );
 };
 
-const projectFields: ProjectType = {
-  projectClient: null,
-  projectDescription: null,
-  projectFrom: null,
-  projectName: null,
-  projectTo: null,
-  responsibilities: null,
-  slug: null,
-  technologies: null,
-  tools: null,
-};
-const requiredFields = Object.keys(projectFields)
-  .map((key: string) => (key !== "slug" ? key : '"slug": projectSlug.current'))
-  .join(", ");
-const query = `*[projectSlug.current == $slug]{${requiredFields}}`;
+const query = `*[projectSlug.current == $slug]{${projectRequiredFields}}`;
 
 const ProjectInfo = ({ slug }): JSX.Element => {
   const [info, setInfo] = useState<ProjectType>(null);
@@ -57,7 +45,11 @@ const ProjectInfo = ({ slug }): JSX.Element => {
     sanClient
       .fetch(query, { slug })
       .then(([data]: Array<ProjectType>) => {
-        setInfo(data);
+        setInfo({
+          ...data,
+          projectFrom: format(new Date(data.projectFrom), "MMM-yy"),
+          projectTo: format(new Date(data.projectTo), 'MMM-yy')
+        });
       })
       .catch((er) => {
         console.warn("Failed project query: ", er);
@@ -85,18 +77,16 @@ const ProjectInfo = ({ slug }): JSX.Element => {
       <br />
 
       <strong>Responsibilities: </strong>
-      <pre>
-        {info.responsibilities}
-      </pre>
+      <pre>{info.responsibilities}</pre>
 
       {!!info.technologies && (
         <div>
           <strong>Technologies used: </strong>
           <div>
             {info.technologies.map((tech) => (
-                <span key={tech} className={projectStyles.item}>
-                  {tech}
-                </span>
+              <span key={tech} className={projectStyles.item}>
+                {tech}
+              </span>
             ))}
           </div>
         </div>
@@ -107,9 +97,9 @@ const ProjectInfo = ({ slug }): JSX.Element => {
           <strong>Tools used: </strong>
           <div>
             {info.tools.map((tool) => (
-                <span key={tool} className={projectStyles.item}>
-                  {tool}
-                </span>
+              <span key={tool} className={projectStyles.item}>
+                {tool}
+              </span>
             ))}
           </div>
         </div>

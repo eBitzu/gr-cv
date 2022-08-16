@@ -11,7 +11,7 @@ export default function JobInfo({ jobInfo }: { jobInfo: CompanyType }) {
         </div>
         <h3 className="ms-3 mb-0">{jobInfo.companyName}</h3>
         <span className="ms-3 small">
-          {`(${jobInfo.periodFrom} - ${jobInfo.periodTo})`}
+          {`(${jobInfo.periodFrom} - ${jobInfo.periodTo || 'present'})`}
         </span>
       </div>
       <div className="mt-3">

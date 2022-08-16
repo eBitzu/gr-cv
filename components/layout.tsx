@@ -22,17 +22,17 @@ const Layout = ({ children }) => (
           <a className="col-4">About me</a>
         </Link>
         <Link href={"/work"}>
-          <a className="col-4">My Work Experience</a>
+          <a className="col-4">Jobs Timeline</a>
         </Link>
         <Link href={"/learn"}>
-          <a className="col-4">My Learning Experience</a>
+          <a className="col-4">Learning Experience</a>
         </Link>
       </nav>
     </header>
     <div className="container py-3" id="layout-container">
-      <main>{children}</main>
-      <footer className="text-center position-absolute w-100 pb-3" style={{ opacity: 0.6, bottom: 0 }}>
-        Powered by Vercel, using next.js, sanity.io
+      <main className="mb-3">{children}</main>
+      <footer className="text-center position-sticky w-100 pb-3 bg-white" style={{ bottom: 0 }}>
+        <span style={{opacity: 0.6}}>Powered by Vercel, using next.js, sanity.io</span>
       </footer>
     </div>
   </>

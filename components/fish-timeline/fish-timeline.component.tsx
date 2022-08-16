@@ -24,7 +24,7 @@ export const FishTimeLine = ({
           </div>
         </div>
         {!!points &&
-          points.map((val) => {
+          points.filter((el, idx) => points.length - 1 !== idx).map((val) => {
             const leftStyle = ((val.date - startTime) / timeLine) * 100;
             const dateLabel = new Date(val.date).getFullYear();
             return (
