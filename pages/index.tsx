@@ -1,7 +1,13 @@
 import Image from "next/image";
+import { CVDownload } from "../components/cv-download";
+import { sanClient } from "../server-utils/client.config";
 
 const name = "Gabriel Raducu";
-export default function Home() {
+type StaticProps = {
+  url: string;
+  downloadText: string;
+}
+export default function Home({url, downloadText}: StaticProps) {
   return (
     <>
       <section className="mt-3">
@@ -39,7 +45,34 @@ export default function Home() {
           <img src='/images/github.svg' width="20" height="20" className="d-inline me-2"/>
           <span>eBitzu</span>
         </a>
+        <CVDownload url={url}>
+          {downloadText}
+        </CVDownload>
       </section>
     </>
   );
+}
+
+
+export async function getStaticProps(): Promise<{props: StaticProps}> {
+  try {
+    const query = "*[_type == 'latest']{'cvFile': cvFile.asset->url, description}";
+    const [{cvFile, description}]: Array<any> = await sanClient.fetch(query);
+
+    return {
+      props: {
+        url: cvFile,
+        downloadText: description
+      }
+    }
+  } catch (er){
+    console.warn('Failed to get latest CV', er);
+
+    return {
+      props: {
+        url: 'https://cdn.sanity.io/files/s4x0hxaq/production/81bd7fc5e99fa56fba70624a6fe686f4a9d69dac.pdf',
+        downloadText: 'Latest CV'
+      }
+    }
+  }
 }
