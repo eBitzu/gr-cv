@@ -22,7 +22,9 @@ export default function Work({ points, latest }: WorkProps) {
       <CurrentPosition latest={latest} />
       <div>
         <details className="my-3">
-          <summary className="text-end"><strong>Jobs timeline</strong></summary>
+          <summary className="text-end">
+            <strong>Jobs timeline</strong>
+          </summary>
           <small className="mb-5">*Hover and select for more details</small>
         </details>
         <FishTimeLine
@@ -43,27 +45,32 @@ export async function getStaticProps(): Promise<{
 
   try {
     const companies: Array<Partial<CompanyType>> = await sanClient.fetch(query);
-    const points: Array<FishTimeLineProps> = companies.map(
-      ({
-        periodFrom,
-        companyName,
-        slug,
-      }: Partial<CompanyType>): FishTimeLineProps => {
-        const [y, m, d] = (periodFrom || "2012-07-12")
-          .split("-")
-          .map((v) => +v);
-        const date = new Date(y, m - 1, d).getTime();
-        return {
-          date,
-          label: companyName,
-          link: slug,
-        };
-      }
-    );
+    const points: Array<FishTimeLineProps> = companies
+      .map(
+        ({
+          periodFrom,
+          companyName,
+          slug,
+        }: Partial<CompanyType>): FishTimeLineProps => {
+          const [y, m, d] = (periodFrom || "2012-07-12")
+            .split("-")
+            .map((v) => +v);
+          const date = new Date(y, m - 1, d).getTime();
+          return {
+            date,
+            label: companyName,
+            link: slug,
+          };
+        }
+      )
+      .sort((a, b) => a.date - b.date);
 
     const latestQuery = `*[_type=="company"] | order(periodFrom desc)[0] {${companyRequiredFields}}`;
     const latestTemp: Partial<CompanyType> = await sanClient.fetch(latestQuery);
-    const latest: Partial<CompanyType>  = {...latestTemp, periodFrom: format(new Date(latestTemp.periodFrom), 'MMM-yy')}
+    const latest: Partial<CompanyType> = {
+      ...latestTemp,
+      periodFrom: format(new Date(latestTemp.periodFrom), "MMM-yy"),
+    };
     return {
       props: { points, latest },
     };
