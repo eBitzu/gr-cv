@@ -69,7 +69,7 @@ export default function Home({
           />
           <span>eBitzu</span>
         </a>
-        <a href="https://www.youtube.com/@the-whyre" target="_blank" className="d-block">
+        <a href="https://www.youtube.com/@the-why-r" target="_blank" className="d-block">
           <img
             src="/images/youtube.svg"
             width="20"
@@ -77,7 +77,7 @@ export default function Home({
             style={{fill: 'red'}}
             className="d-inline me-2"
           />
-          <span>The WHYre</span>
+          <span>The why-r</span>
         </a>
         <CVDownload url={cvFile}>{description}</CVDownload>
       </section>
