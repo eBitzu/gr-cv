@@ -71,7 +71,7 @@ export default function Home({
         </a>
         <a href="https://game-of-life-astro.vercel.app/" target="_blank" className="d-block">
           <img
-            src="/images/github.svg"
+            src="/images/astro.svg"
             width="20"
             height="20"
             className="d-inline me-2"
