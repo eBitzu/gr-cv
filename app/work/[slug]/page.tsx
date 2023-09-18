@@ -36,7 +36,7 @@ export async function generateStaticParams() {
       query
     );
 
-    const paths = companies.map(({ slug }) => ({ params: { slug } }));
+    const paths = companies.map(({ slug }) => ({ slug }));
     return paths;
   } catch (er) {
     console.log("er", er);
