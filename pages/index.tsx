@@ -45,8 +45,8 @@ export default function Home({
         <p>
           Passionate about high scale frontend applications with large
           experience in Solution Design, JS frameworks, project setup, coding
-          best practices and unit-testing. Fluent in Angular and React with some
-          electron and web-workers flavors.
+          best practices and unit-testing. Fluent in Next.js and React with some
+          angular, astro, electron and web-workers flavors.
         </p>
 
         <p className="mt-4 mb-0">You can follow my activity here:</p>
@@ -69,15 +69,14 @@ export default function Home({
           />
           <span>eBitzu</span>
         </a>
-        <a href="https://www.youtube.com/@the-why-r" target="_blank" className="d-block">
+        <a href="https://game-of-life-astro.vercel.app/" target="_blank" className="d-block">
           <img
-            src="/images/youtube.svg"
+            src="/images/github.svg"
             width="20"
             height="20"
-            style={{fill: 'red'}}
             className="d-inline me-2"
           />
-          <span>The why-r</span>
+          <span>Game of Life - with Astro</span>
         </a>
         <CVDownload url={cvFile}>{description}</CVDownload>
       </section>
