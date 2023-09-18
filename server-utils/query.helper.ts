@@ -1,4 +1,4 @@
-import { CompanyType, ProjectType } from "../models/api.types";
+import { CompanyType, ProjectType } from "../types/api.types";
 
 const fields: CompanyType = {
     companyLogo: null,

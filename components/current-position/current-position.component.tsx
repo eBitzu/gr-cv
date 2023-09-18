@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { CompanyType } from "../../models/api.types";
+import { CompanyType } from "../../types/api.types";
 
 export const CurrentPosition = ({ latest }: { latest: CompanyType }) => {
   const {
@@ -11,15 +11,16 @@ export const CurrentPosition = ({ latest }: { latest: CompanyType }) => {
   } = latest;
   return latest ? (
     <>
-      <strong className="mt-4 d-block">Current position:</strong>
-      <div className="d-flex justify-content-center" title={companyName}>
+      <strong className="mt-4 block">Current position:</strong>
+      <div className="flex justify-center" title={companyName}>
         <div
-          className="position-relative me-3"
+          className="relative me-3"
           style={{ height: 100, minWidth: 100 }}
         >
           <Image
             layout="fill"
             src={companyLogo}
+            alt={companyName}
             objectFit="contain"
           />
         </div>

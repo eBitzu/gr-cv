@@ -1,20 +1,15 @@
 import Image from "next/image";
-import { CVDownload } from "../components/cv-download";
-import { sanClient } from "../server-utils/client.config";
+import { HomeStaticProps } from "../../types/home.types";
+import { CVDownload } from "../cv-download";
 
 const name = "Gabriel Raducu";
-type StaticProps = {
-  cvFile: string;
-  headline: string;
-  linkedin: string;
-  description: string;
-};
-export default function Home({
+
+export const HomeComponent = ({
   cvFile,
   description,
   headline,
   linkedin,
-}: StaticProps) {
+}: HomeStaticProps) => {
   return (
     <>
       <section className="mt-3">
@@ -22,19 +17,19 @@ export default function Home({
           <Image
             priority
             src="/images/profile.jpg"
-            style={{ borderRadius: 999 }}
+            className="mx-auto rounded-full"
             height={144}
             width={144}
             alt={name}
           />
-          <h1 className="text-purple">{name}</h1>
-          <h4>{headline}</h4>
+          <h1 className="text-indigo-700 text-4xl mb-2">{name}</h1>
+          <h4 className="text-2xl mb-2">{headline}</h4>
           <a href="mailto:raducu.gabriel@gmail.com">
             <img
               src="/images/envelope.svg"
               width="20"
               height="20"
-              className="d-inline me-2"
+              className="inline me-2"
             ></img>
             <span>raducu.gabriel@gmail.com</span>
           </a>
@@ -55,7 +50,7 @@ export default function Home({
             src="/images/linkedin.svg"
             width="20"
             height="20"
-            className="d-inline me-2"
+            className="inline me-2"
           />
           <span>gabrielraducu</span>
         </a>
@@ -65,16 +60,20 @@ export default function Home({
             src="/images/github.svg"
             width="20"
             height="20"
-            className="d-inline me-2"
+            className="inline me-2"
           />
           <span>eBitzu</span>
         </a>
-        <a href="https://game-of-life-astro.vercel.app/" target="_blank" className="d-block">
+        <p className="mt-4 mb-0">Some side projects I deployed:</p>
+        <a
+          href="https://game-of-life-astro.vercel.app/"
+          target="_blank"
+        >
           <img
             src="/images/astro.svg"
             width="20"
             height="20"
-            className="d-inline me-2"
+            className="inline me-2"
           />
           <span>Game of Life - with Astro</span>
         </a>
@@ -82,28 +81,4 @@ export default function Home({
       </section>
     </>
   );
-}
-
-export async function getStaticProps(): Promise<{ props: StaticProps }> {
-  try {
-    const query =
-      "*[_type == 'latest']{'cvFile': cvFile.asset->url, description, linkedin, headline}";
-    const [props]: Array<StaticProps> = await sanClient.fetch(query);
-    console.log(props.cvFile);
-    return {
-      props,
-    };
-  } catch (er) {
-    console.warn("Failed to get latest CV", er);
-
-    return {
-      props: {
-        cvFile:
-          "https://cdn.sanity.io/files/s4x0hxaq/production/496a0fde1b82d8bc4828d8b9816643de6602c6c0.pdf",
-        description: "Latest CV",
-        headline: "FrontEnd Tech Lead",
-        linkedin: "https://www.linkedin.com/in/gabrielraducu/",
-      },
-    };
-  }
-}
+};

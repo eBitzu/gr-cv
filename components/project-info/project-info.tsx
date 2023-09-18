@@ -1,5 +1,6 @@
+'use client';
 import { useCallback, useState, MouseEvent, useEffect } from "react";
-import { ProjectType } from "../../models/api.types";
+import { ProjectType } from "../../types/api.types";
 import { sanClient } from "../../server-utils/client.config";
 import { projectRequiredFields } from "../../server-utils/query.helper";
 import projectStyles from "./project-info.module.scss";
@@ -27,7 +28,7 @@ export const JobProjects = ({ projects }): JSX.Element => {
         {!!project ? (
           <ProjectInfo slug={project}></ProjectInfo>
         ) : (
-          <small className="d-block mt-2">
+          <small className="block mt-2">
             *Please select a project to see more details
           </small>
         )}

@@ -1,4 +1,4 @@
-import { EducationType } from "../../models/api.types";
+import { EducationType } from "../../types/api.types";
 import eduStyles from "./education.module.scss";
 
 export const Education = ({

@@ -33,6 +33,10 @@ export type FishTimeline = {
     startTimeLabel: string;
 }
 
+export type LearnProps = {
+  learnings: Array<EducationType>;
+}
+
 export type EducationType = {
     name: string;
     location: string;
