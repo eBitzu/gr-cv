@@ -3,7 +3,7 @@ import Link from "next/link";
 export const siteTitle = "Gabriel Raducu's CV";
 
 const Navigation = () => (
-  <nav className="flex justify-around items-center mx-auto h-12">
+  <nav className="flex justify-around items-center mx-auto h-12  md:max-w-3xl">
     <Link href={"/"}>
       <span>About me</span>
     </Link>

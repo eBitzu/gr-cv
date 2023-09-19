@@ -12,7 +12,7 @@ export const HomeComponent = ({
 }: HomeStaticProps) => {
   return (
     <>
-      <section className="mt-3">
+      <section className="py-4 px-6">
         <div className="text-center mb-4">
           <Image
             priority
@@ -68,6 +68,7 @@ export const HomeComponent = ({
         <a
           href="https://game-of-life-astro.vercel.app/"
           target="_blank"
+          className="flex align-middle"
         >
           <img
             src="/images/astro.svg"
@@ -76,6 +77,19 @@ export const HomeComponent = ({
             className="inline me-2"
           />
           <span>Game of Life - with Astro</span>
+        </a>
+        <a
+          href="https://ssg-button-next-js.vercel.app/"
+          target="_blank"
+          className="flex align-middle"
+        >
+          <img
+            src="/images/nextjs.svg"
+            width="20"
+            height="20"
+            className="inline me-2"
+          />
+          <span>SSR click events - with Nextjs, htmx</span>
         </a>
         <CVDownload url={cvFile}>{description}</CVDownload>
       </section>
