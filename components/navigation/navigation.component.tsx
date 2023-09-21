@@ -1,9 +1,12 @@
+'use client';
 import Link from "next/link";
+import { FC } from "react";
 
 export const siteTitle = "Gabriel Raducu's CV";
 
-const Navigation = () => (
-  <nav className="flex justify-around items-center mx-auto h-12  md:max-w-3xl">
+const Navigation: FC = () => {
+  const iframe = window?.self !== window?.top;
+  return iframe ? null : (<nav className="flex justify-around items-center mx-auto h-12  md:max-w-3xl">
     <Link href={"/"}>
       <span>About me</span>
     </Link>
@@ -13,7 +16,7 @@ const Navigation = () => (
     <Link href={"/learn"}>
       <span>Learning Experience</span>
     </Link>
-  </nav>
-);
+  </nav>);
+};
 
 export default Navigation;
