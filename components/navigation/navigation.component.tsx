@@ -7,8 +7,7 @@ export const siteTitle = "Gabriel Raducu's CV";
 
 const Navigation: FC = () => {
   const frameParam = useSearchParams()?.get('frame');
-  const iframe = window?.self !== window?.top || frameParam;
-  return iframe ? null : (<nav className="flex justify-around items-center mx-auto h-12  md:max-w-3xl">
+  return frameParam === 'no-header' ? null : (<nav className="flex justify-around items-center mx-auto h-12  md:max-w-3xl">
     <Link href={"/"}>
       <span>About me</span>
     </Link>
