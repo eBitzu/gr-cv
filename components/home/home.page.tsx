@@ -79,7 +79,7 @@ export const HomeComponent = ({
           <span>Game of Life - with Astro</span>
         </a>
         <a
-          href="https://ssg-button-next-js.vercel.app/"
+          href="https://ssr-button-next-js.vercel.app/"
           target="_blank"
           className="flex align-middle"
         >
