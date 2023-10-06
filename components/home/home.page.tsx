@@ -1,14 +1,13 @@
 import Image from "next/image";
 import { HomeStaticProps } from "../../types/home.types";
 import { CVDownload } from "../cv-download";
+import { LinkMapper } from "../link-mapper/link-mapper.component";
 
 const name = "Gabriel Raducu";
 
 export const HomeComponent = ({
-  cvFile,
-  description,
-  headline,
-  linkedin,
+  cvFile: { ctaLabel, cvFile },
+  aboutMe: { headline, shortDescription, sideProjects, socialLinks },
 }: HomeStaticProps) => {
   return (
     <>
@@ -37,61 +36,18 @@ export const HomeComponent = ({
         <div>
           <strong>About me:</strong>
         </div>
-        <p>
-          Passionate about high scale frontend applications with large
-          experience in Solution Design, JS frameworks, project setup, coding
-          best practices and unit-testing. Fluent in Next.js and React with some
-          angular, astro, electron and web-workers flavors.
-        </p>
+        <p>{shortDescription}</p>
 
-        <p className="mt-4 mb-0">You can follow my activity here:</p>
-        <a href={linkedin} target="_blank">
-          <img
-            src="/images/linkedin.svg"
-            width="20"
-            height="20"
-            className="inline me-2"
-          />
-          <span>gabrielraducu</span>
-        </a>
-        <br />
-        <a href="https://github.com/eBitzu" target="_blank">
-          <img
-            src="/images/github.svg"
-            width="20"
-            height="20"
-            className="inline me-2"
-          />
-          <span>eBitzu</span>
-        </a>
-        <p className="mt-4 mb-0">Some side projects I deployed:</p>
-        <a
-          href="https://game-of-life-astro.vercel.app/"
-          target="_blank"
-          className="flex align-middle"
-        >
-          <img
-            src="/images/astro.svg"
-            width="20"
-            height="20"
-            className="inline me-2"
-          />
-          <span>Game of Life - with Astro</span>
-        </a>
-        <a
-          href="https://ssr-button-next-js.vercel.app/"
-          target="_blank"
-          className="flex align-middle"
-        >
-          <img
-            src="/images/nextjs.svg"
-            width="20"
-            height="20"
-            className="inline me-2"
-          />
-          <span>SSR click events - with Nextjs, htmx</span>
-        </a>
-        <CVDownload url={cvFile}>{description}</CVDownload>
+        <LinkMapper
+          links={socialLinks}
+          sectionDescription="You can follow my activity here:"
+        />
+        <LinkMapper
+          links={sideProjects}
+          sectionDescription="Some side projects I deployed:"
+        />
+        <div className="py-3" />
+        <CVDownload url={cvFile}>{ctaLabel}</CVDownload>
       </section>
     </>
   );
