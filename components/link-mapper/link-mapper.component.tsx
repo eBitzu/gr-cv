@@ -19,6 +19,7 @@ export const LinkMapper: FC<LinkMapperProps> = ({
             src={`/images/${link.iconName}.svg`}
             width="20"
             height="20"
+            alt={link.iconName}
             className="inline me-2"
           />
           <span>{link.linkLabel}</span>

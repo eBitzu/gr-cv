@@ -22,12 +22,13 @@ export const HomeComponent = ({
             alt={name}
           />
           <h1 className="text-indigo-700 text-4xl mb-2">{name}</h1>
-          <h4 className="text-2xl mb-2">{headline}</h4>
+          <h2 className="text-2xl mb-2">{headline}</h2>
           <a href="mailto:raducu.gabriel@gmail.com">
             <img
               src="/images/envelope.svg"
               width="20"
               height="20"
+              alt="envelope"
               className="inline me-2"
             ></img>
             <span>raducu.gabriel@gmail.com</span>
